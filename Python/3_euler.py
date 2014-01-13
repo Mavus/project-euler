@@ -1,25 +1,25 @@
 #!/usr/bin/python
 
 product = 600851475143
-prime_factors = []
 
 def isPrime(n):
-    for i in range(2,n-1):
+    i = 2
+    while i <= (n / 2):
         if n % i == 0:
             return False
-    return True
-
+        i += 1
+    else:
+        return True 
 def findPrimeFactors(m):
     n = 2
-    while n < m:
-        if m % n == 0:
-            if isPrime(n):
-                prime_factors.append(n)
-                findPrimeFactors(m / n)
-        n += 1
-    else:
-        prime_factors.append(m)
+    while n <= m:
+        print "Checking: ", n
+        if m % n == 0 and isPrime(n):
+            if isPrime(m):
+                return m
+            else:
+                m = m / n
+        else:
+            n += 1
 
-findPrimeFactors(product)
-
-print max(prime_factors)
+print findPrimeFactors(product)
